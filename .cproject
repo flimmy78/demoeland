@@ -82,402 +82,50 @@
 				<useDefaultCommand>true</useDefaultCommand>
 				<runAllBuilders>true</runAllBuilders>
 			</target>
-			<target name="mico-demos@MK3165" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+			<target name="alilodemo@ALILO_G6_V0_3@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
 				<buildCommand>mico</buildCommand>
 				<buildArguments>make</buildArguments>
-				<buildTarget>mico-demos@MK3165</buildTarget>
+				<buildTarget>alilodemo@ALILO_G6_V0_3@moc download run</buildTarget>
 				<stopOnError>true</stopOnError>
 				<useDefaultCommand>true</useDefaultCommand>
 				<runAllBuilders>true</runAllBuilders>
 			</target>
-			<target name="mico-demos@MK3080B@moc" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+			<target name="alilodemo@ALILO_G6_V0_3@moc" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
 				<buildCommand>mico</buildCommand>
 				<buildArguments>make</buildArguments>
-				<buildTarget>mico-demos@MK3080B@moc</buildTarget>
+				<buildTarget>alilodemo@ALILO_G6_V0_3@moc</buildTarget>
 				<stopOnError>true</stopOnError>
 				<useDefaultCommand>true</useDefaultCommand>
 				<runAllBuilders>true</runAllBuilders>
 			</target>
-			<target name="application.fog_v2_micokit_enjoy@MK3165" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+			<target name="net.sntp_client@ALILO_G6_V0_3@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
 				<buildCommand>mico</buildCommand>
 				<buildArguments>make</buildArguments>
-				<buildTarget>application.fog_v2_micokit_enjoy@MK3165</buildTarget>
+				<buildTarget>net.sntp_client@ALILO_G6_V0_3@moc download run</buildTarget>
 				<stopOnError>true</stopOnError>
 				<useDefaultCommand>true</useDefaultCommand>
 				<runAllBuilders>true</runAllBuilders>
 			</target>
-			<target name="application.fog_v2_micokit_enjoy@MK3165 download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+			<target name="alilodemo@ALILO_G6_V0_3@moc total" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
 				<buildCommand>mico</buildCommand>
 				<buildArguments>make</buildArguments>
-				<buildTarget>application.fog_v2_micokit_enjoy@MK3165 download run</buildTarget>
+				<buildTarget>alilodemo@ALILO_G6_V0_3@moc total</buildTarget>
 				<stopOnError>true</stopOnError>
 				<useDefaultCommand>true</useDefaultCommand>
 				<runAllBuilders>true</runAllBuilders>
 			</target>
-			<target name="application.fog_v2_micokit_enjoy@MK3165 total download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+			<target name="net.http.http_client_demo@ALILO_G6_V0_3@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
 				<buildCommand>mico</buildCommand>
 				<buildArguments>make</buildArguments>
-				<buildTarget>application.fog_v2_micokit_enjoy@MK3165 total download run</buildTarget>
+				<buildTarget>net.http.http_client_demo@ALILO_G6_V0_3@moc download run</buildTarget>
 				<stopOnError>true</stopOnError>
 				<useDefaultCommand>true</useDefaultCommand>
 				<runAllBuilders>true</runAllBuilders>
 			</target>
-			<target name="hardware.micokit_ext@MK3165 total download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+			<target name="alilodemo@ALILO_G6_V0_3@moc download run total" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
 				<buildCommand>mico</buildCommand>
 				<buildArguments>make</buildArguments>
-				<buildTarget>hardware.micokit_ext@MK3165 total download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="hardware.micokit_ext.oled@MK3165 total download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>hardware.micokit_ext.oled@MK3165 total download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="net.http.http_client_demo@MK3165 download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>net.http.http_client_demo@MK3165 download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="net.http.http_client_demo@MK3165 total download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>net.http.http_client_demo@MK3165 total download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="mico-demos@MK3080B@moc total download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>mico-demos@MK3080B@moc total download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="hardware.micokit_ext.oled@MK3080B@moc total download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>hardware.micokit_ext.oled@MK3080B@moc total download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="hardware.micokit_ext.oled@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>hardware.micokit_ext.oled@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="application.fog_v2_micokit_enjoy@MK3080B@moc" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>application.fog_v2_micokit_enjoy@MK3080B@moc</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="application.fog_v2_micokit_enjoy@MK3080B@moc download run total" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>application.fog_v2_micokit_enjoy@MK3080B@moc download run total</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="application.fog_v2_micokit_enjoy@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>application.fog_v2_micokit_enjoy@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="test.hardware_test_3080@MK3080B@moc total download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>test.hardware_test_3080@MK3080B@moc total download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="helloworld@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>helloworld@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="application.fog_v2_micokit_enjoy@MK3165 total" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>application.fog_v2_micokit_enjoy@MK3165 total</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="helloworld@MK3165 download run total" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>helloworld@MK3165 download run total</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="helloworld@MK3165 download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>helloworld@MK3165 download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="netclock@MK3165 download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>netclock@MK3165 download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="netclock@MK3165" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>netclock@MK3165</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="netclock@MK3165 download run total" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>netclock@MK3165 download run total</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="application.wifi_uart@MK3165 download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>application.wifi_uart@MK3165 download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="net.tcp_client@MK3165 total download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>net.tcp_client@MK3165 total download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="net.tcp_server@MK3165 download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>net.tcp_server@MK3165 download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="net.tcp_client@MK3165 download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>net.tcp_client@MK3165 download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="application.homekit@MK3165 download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>application.homekit@MK3165 download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="application.homekit@MK3165 total" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>application.homekit@MK3165 total</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="application.homekit@MK3165" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>application.homekit@MK3165</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="test.hal_user_uart@MK3080B@moc" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>test.hal_user_uart@MK3080B@moc</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="test.hal_user_uart@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>test.hal_user_uart@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="wifi.scan@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>wifi.scan@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="test.hal_rtc@MK3080B@moc total download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>test.hal_rtc@MK3080B@moc total download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="test.hal_rtc@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>test.hal_rtc@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="net.sntp_client@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>net.sntp_client@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="wifi.soft_ap@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>wifi.soft_ap@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="net.tcp_client@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>net.tcp_client@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="net.http.http_client_demo@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>net.http.http_client_demo@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="application.wifi_uart@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>application.wifi_uart@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="netclock@MK3080B@moc total download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>netclock@MK3080B@moc total download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="netclock@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>netclock@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="netclock@MK3080B@moc" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>netclock@MK3080B@moc</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="net.http.http_server_demo@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>net.http.http_server_demo@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="net.http.http_server_demo@MK3165 download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>net.http.http_server_demo@MK3165 download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="net.http.http_server_demo@MK3165" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>net.http.http_server_demo@MK3165</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="netclock@MK3080B@moc total" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>netclock@MK3080B@moc total</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="parser.json@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>parser.json@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="testdemo@ALILO_G6_V0_3@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>testdemo@ALILO_G6_V0_3@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="testdemo@ALILO_G6_V0_3@moc" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>testdemo@ALILO_G6_V0_3@moc</buildTarget>
+				<buildTarget>alilodemo@ALILO_G6_V0_3@moc download run total</buildTarget>
 				<stopOnError>true</stopOnError>
 				<useDefaultCommand>true</useDefaultCommand>
 				<runAllBuilders>true</runAllBuilders>

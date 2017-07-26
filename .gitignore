@@ -1,4 +1,5 @@
 .vscode
+.settings
 mico-os
 build
 netclock

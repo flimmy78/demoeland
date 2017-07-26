@@ -61,7 +61,6 @@ int application_start( void )
   http_server_log("ssid:%s  key:%s", wNetConfig.wifi_ssid, wNetConfig.wifi_key);
   micoWlanStart(&wNetConfig);
 
-
   /* start http server thread */
   app_httpd_start();
   

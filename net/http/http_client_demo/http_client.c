@@ -54,14 +54,12 @@ void simple_http_get(char *host, char *query);
 void simple_https_get(char *host, char *query);
 
 #define SIMPLE_GET_REQUEST    \
-    "GET /test HTTP/1.1\r\n"      \
-    "Host: 192.168.1.110\r\n" \
+    "GET / HTTP/1.1\r\n"  \
+    "Host: www.baidu.com\r\n" \
     "Connection: close\r\n"   \
-    "Content-length:17\r\n"\
+    "Content-length:17\r\n"   \
     "\r\n"                    \
-       "<html.....</html>"
-
-
+    "<html.....</html>"
 
 static void micoNotify_WifiStatusHandler(WiFiEvent status, void *const inContext)
 {
@@ -98,8 +96,8 @@ int application_start(void)
     http_client_log("wifi connected successful");
 
     /* Read http data from server */
-    simple_http_get("192.168.1.110", SIMPLE_GET_REQUEST);
-    simple_https_get("192.168.1.110", SIMPLE_GET_REQUEST);
+    simple_http_get("www.baidu.com", SIMPLE_GET_REQUEST);
+    simple_https_get("www.baidu.com", SIMPLE_GET_REQUEST);
 
 exit:
     mico_rtos_delete_thread(NULL);
@@ -207,7 +205,7 @@ void simple_https_get(char *host, char *query)
 
     ssl_set_client_version(TLS_V1_2_MODE);
     client_ssl = ssl_connect(client_fd, 0, NULL, &ssl_errno);
-    http_client_log("ssl_errno = %d client_fd = %d",ssl_errno,client_fd);
+    http_client_log("ssl_errno = %d client_fd = %d", ssl_errno, client_fd);
     require_string(client_ssl != NULL, exit, "ERROR: ssl disconnect");
 
     /* Send HTTP Request */
