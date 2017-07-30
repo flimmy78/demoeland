@@ -33,7 +33,7 @@
 #include "mico.h"
 #include "sntp.h"
 
-#define TIME_SYNC_PERIOD    (60 * SECONDS)
+#define TIME_SYNC_PERIOD    (1 * SECONDS)
 
 #define sntp_demo_log(M, ...) custom_log("SNTP DEMO", M, ##__VA_ARGS__)
 
@@ -108,7 +108,6 @@ int application_start( void )
     OSStatus           err = kNoErr;
     struct tm          utc_time;
     mico_utc_time_ms_t utc_time_ms;
-    iso8601_time_t     iso8601_time;
 
     err = mico_rtos_init_semaphore(&wifi_sem, 1);
     require_noerr(err, exit);
@@ -131,20 +130,19 @@ int application_start( void )
     /* wait for wifi on */
     mico_rtos_get_semaphore(&wifi_sem, MICO_WAIT_FOREVER);
 
-
-
     /* Start auto sync with NTP server */
     sntp_start_auto_time_sync( TIME_SYNC_PERIOD, sntp_time_synced );
 
     /* Print current time from MiCO system every 10 seconds */
-    while ( 1 )
-    {
-        mico_time_get_iso8601_time( &iso8601_time );
-        sntp_demo_log("Current time: %.26s", (char*)&iso8601_time);
-        mico_rtos_delay_milliseconds( 10 * 1000 );
-    }
+//    while ( 1 )
+//    {
+//        mico_time_get_iso8601_time( &iso8601_time );
+//        sntp_demo_log("Current time: %.26s", (char*)&iso8601_time);
+//        mico_rtos_delay_milliseconds( 10 * 1000 );
+//    }
 
     exit:
+    sntp_demo_log("mico_rtos_delete_thread");
     mico_rtos_delete_thread( NULL );
     return 0;
 }

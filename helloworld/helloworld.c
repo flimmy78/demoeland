@@ -50,9 +50,8 @@ int uart_get_one_packet(uint8_t *inBuf, int inBufLen)
     //MicoGpioOutputTrigger(MICO_SYS_LED);
     err = MicoUartRecv(MICO_UART_2, p, 1, MICO_WAIT_FOREVER);
     MicoGpioOutputTrigger(MICO_SYS_LED);
-    os_helloworld_log("Hello world!");
     require_noerr(err, exit);
-    //require((*p == 0xA0), exit);
+    require((*p == 0xA0), exit);
     for (int i = 0; i < 7; i++)
     {
         p++;
@@ -75,7 +74,6 @@ void uart_recv_thread_DDE(uint32_t arg)
     uint8_t *inDataBuffer;
     inDataBuffer = malloc(UART_ONE_PACKAGE_LENGTH);
     require(inDataBuffer, exit);
-
     while (1)
     {
         recvlen = uart_get_one_packet(inDataBuffer, UART_ONE_PACKAGE_LENGTH);
@@ -85,11 +83,12 @@ void uart_recv_thread_DDE(uint32_t arg)
             continue;
         }
         //printf( "\r\n" );
-        for (int i = 0; i < recvlen; i++)
-        {
-            //printf( "%02x ", inDataBuffer[i] );
-            MicoUartSend(MICO_UART_2, &(inDataBuffer[i]), 1);
-        }
+//        for (int i = 0; i < recvlen; i++)
+//        {
+//            //printf( "%02x ", inDataBuffer[i] );
+//            MicoUartSend(MICO_UART_2, &(inDataBuffer[i]), 1);
+//        }
+      MicoUartSend(MICO_UART_2, &(inDataBuffer[0]), recvlen);
         MicoGpioOutputTrigger(MICO_SYS_LED);
         //printf( "\r\n\r\n" );
         //uart_cmd_process( inDataBuffer, recvlen );
@@ -103,10 +102,8 @@ exit:
 
 int application_start(void)
 {
-
     mico_context = mico_system_context_init(0);
     mico_uart_config_t uart_config;
-
     /*UART receive thread*/
     uart_config.baud_rate = 115200;
     uart_config.data_width = DATA_WIDTH_8BIT;
@@ -120,19 +117,14 @@ int application_start(void)
     MicoGpioOutputTrigger(MICO_SYS_LED);
     ring_buffer_init((ring_buffer_t *)&rx_buffer, (uint8_t *)rx_data, UART_BUFFER_LENGTH);
     MicoUartInitialize(MICO_UART_2, &uart_config, (ring_buffer_t *)&rx_buffer);
-    return mico_rtos_create_thread(NULL, MICO_APPLICATION_PRIORITY, "UART Recv", uart_recv_thread_DDE,
-                                   STACK_SIZE_UART_RECV_THREAD, 0);
-
-    /* Start MiCO system functions according to mico_config.h*/
-    mico_system_init(mico_system_context_init(0));
+    mico_rtos_create_thread(NULL, MICO_APPLICATION_PRIORITY, "UART Recv", uart_recv_thread_DDE,
+                            STACK_SIZE_UART_RECV_THREAD, 0);
 
     /* Output on debug serial port */
-    os_helloworld_log("Hello world!");
+    // os_helloworld_log("Hello world!");
 
     /* Trigger MiCO system led available on most MiCOKit */
-    while (1)
-    {
-        MicoGpioOutputTrigger(MICO_SYS_LED);
-        mico_thread_sleep(1);
-    }
+
+    mico_rtos_delete_thread(NULL);
+    return kGeneralErr;
 }
