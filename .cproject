@@ -162,6 +162,22 @@
 				<useDefaultCommand>true</useDefaultCommand>
 				<runAllBuilders>true</runAllBuilders>
 			</target>
+			<target name="alilodemo@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>mico</buildCommand>
+				<buildArguments>make</buildArguments>
+				<buildTarget>alilodemo@MK3080B@moc download run</buildTarget>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
+			<target name="wifi.station@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>mico</buildCommand>
+				<buildArguments>make</buildArguments>
+				<buildTarget>wifi.station@MK3080B@moc download run</buildTarget>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
 		</buildTargets>
 	</storageModule>
 </cproject>
