@@ -178,6 +178,14 @@
 				<useDefaultCommand>true</useDefaultCommand>
 				<runAllBuilders>true</runAllBuilders>
 			</target>
+			<target name="net.http.http_server_demo@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>mico</buildCommand>
+				<buildArguments>make</buildArguments>
+				<buildTarget>net.http.http_server_demo@MK3080B@moc download run</buildTarget>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
 		</buildTargets>
 	</storageModule>
 </cproject>

@@ -31,41 +31,39 @@
  ******************************************************************************
  */
 
-#include "mico.h" 
+#include "mico.h"
 #include "app_httpd.h"
 
-#define http_server_log(format, ...)  custom_log("httpserver", format, ##__VA_ARGS__)
+#define http_server_log(format, ...) custom_log("httpserver", format, ##__VA_ARGS__)
 static char *ap_ssid = "mxchip_zfw";
 static char *ap_key = "12345678";
-int application_start( void )
+int application_start(void)
 {
     network_InitTypeDef_st wNetConfig;
-  /* Start MiCO system functions according to mico_config.h*/
-  mico_system_init( mico_system_context_init( 0 ) );
-  
-  /* Output on debug serial port */
-  http_server_log( "http server Demo!" );
-  
-  memset(&wNetConfig, 0x0, sizeof(network_InitTypeDef_st));
+    /* Start MiCO system functions according to mico_config.h*/
+    mico_system_init(mico_system_context_init(0));
 
-  strcpy((char*)wNetConfig.wifi_ssid, ap_ssid);
-  strcpy((char*)wNetConfig.wifi_key, ap_key);
+    /* Output on debug serial port */
+    http_server_log("http server Demo!");
 
-  wNetConfig.wifi_mode = Soft_AP;
-  wNetConfig.dhcpMode = DHCP_Server;
-  wNetConfig.wifi_retry_interval = 100;
-  strcpy((char*)wNetConfig.local_ip_addr, "192.168.0.1");
-  strcpy((char*)wNetConfig.net_mask, "255.255.255.0");
-  strcpy((char*)wNetConfig.dnsServer_ip_addr, "192.168.0.1");
+    memset(&wNetConfig, 0x0, sizeof(network_InitTypeDef_st));
 
-  http_server_log("ssid:%s  key:%s", wNetConfig.wifi_ssid, wNetConfig.wifi_key);
-  micoWlanStart(&wNetConfig);
+    strcpy((char *)wNetConfig.wifi_ssid, ap_ssid);
+    strcpy((char *)wNetConfig.wifi_key, ap_key);
 
-  /* start http server thread */
-  app_httpd_start();
-  
-  mico_rtos_delete_thread( NULL );
-  return kNoErr;
+    wNetConfig.wifi_mode = Soft_AP;
+    wNetConfig.dhcpMode = DHCP_Server;
+    wNetConfig.wifi_retry_interval = 100;
+    strcpy((char *)wNetConfig.local_ip_addr, "192.168.0.1");
+    strcpy((char *)wNetConfig.net_mask, "255.255.255.0");
+    strcpy((char *)wNetConfig.dnsServer_ip_addr, "192.168.0.1");
+
+    http_server_log("ssid:%s  key:%s", wNetConfig.wifi_ssid, wNetConfig.wifi_key);
+    micoWlanStart(&wNetConfig);
+
+    /* start http server thread */
+    app_httpd_start();
+
+    mico_rtos_delete_thread(NULL);
+    return kNoErr;
 }
-
-
