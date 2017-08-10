@@ -54,7 +54,7 @@ void simple_http_get(char *host, char *query);
 void simple_https_get(char *host, char *query);
 
 #define SIMPLE_GET_REQUEST    \
-    "GET / HTTP/1.1\r\n"  \
+    "GET / HTTP/1.1\r\n"      \
     "Host: www.baidu.com\r\n" \
     "Connection: close\r\n"   \
     "Content-length:17\r\n"   \
