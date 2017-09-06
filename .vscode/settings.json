@@ -465,6 +465,9 @@
         "platform_init.c": "cpp",
         "atcmd_wifi.c": "cpp",
         "event_notification.h": "c",
-        "platform_config.h": "c"
+        "platform_config.h": "c",
+        "flash_kh25.h": "c",
+        "eland_spi.h": "c",
+        "fog_v2_include.h": "c"
     }
 }

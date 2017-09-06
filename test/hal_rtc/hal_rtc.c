@@ -21,6 +21,7 @@ OSStatus application_start(void)
 {
     OSStatus status = kNoErr;
     mico_rtc_time_t cur_time = {0};
+    iso8601_time_t  iso8601_time;
     cur_time.year = 16; //设置时间
     cur_time.month = 2;
     cur_time.date = 18;
@@ -32,9 +33,11 @@ OSStatus application_start(void)
     if (status == kNoErr)
         while (1)
         {
-            print_time(cur_time);      //打印时间
+            //print_time(cur_time);      //打印时间
             mico_thread_msleep(1000);  //等待 1s
             MicoRtcGetTime(&cur_time); //返回新的时间值
+            mico_time_get_iso8601_time( &iso8601_time );
+            rtc_log("Current time: %.26s", (char*)&iso8601_time);
         }
     return status;
 }

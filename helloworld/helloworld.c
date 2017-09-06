@@ -32,99 +32,78 @@
 
 #include "mico.h"
 
-#define os_helloworld_log(format, ...) custom_log("helloworld", format, ##__VA_ARGS__)
+#define os_helloworld_log(format, ...) custom_log("HW", format, ##__VA_ARGS__)
 
-static mico_Context_t *mico_context;
-volatile ring_buffer_t rx_buffer;
-volatile uint8_t rx_data[2048];
-#define UART_BUFFER_LENGTH 2048
-#define UART_ONE_PACKAGE_LENGTH 1024
-#define STACK_SIZE_UART_RECV_THREAD 0x900
+static uint16_t wifi_connect_count = 0;
+static uint16_t wifi_lost_count = 0;
 
-int uart_get_one_packet(uint8_t *inBuf, int inBufLen)
+static void micoNotify_ConnectFailedHandler(OSStatus err, void *inContext)
 {
-    OSStatus err = kNoErr;
-    char datalen;
-    uint8_t *p;
-    p = inBuf;
-    //MicoGpioOutputTrigger(MICO_SYS_LED);
-    err = MicoUartRecv(MICO_UART_2, p, 1, MICO_WAIT_FOREVER);
-    MicoGpioOutputTrigger(MICO_SYS_LED);
-    require_noerr(err, exit);
-    require((*p == 0xA0), exit);
-    for (int i = 0; i < 7; i++)
-    {
-        p++;
-        err = MicoUartRecv(MICO_UART_2, p, 1, 500);
-
-        require_noerr(err, exit);
-    }
-    datalen = *p;
-    p++;
-    err = MicoUartRecv(MICO_UART_2, p, datalen + 1, 500);
-    require_noerr(err, exit);
-    require(datalen + 9 <= inBufLen, exit);
-    return datalen + 9; //返回帧的长度
-exit:
-    return -1;
-}
-void uart_recv_thread_DDE(uint32_t arg)
-{
-    int8_t recvlen;
-    uint8_t *inDataBuffer;
-    inDataBuffer = malloc(UART_ONE_PACKAGE_LENGTH);
-    require(inDataBuffer, exit);
-    while (1)
-    {
-        recvlen = uart_get_one_packet(inDataBuffer, UART_ONE_PACKAGE_LENGTH);
-        if (recvlen <= 0)
-        {
-            MicoGpioOutputTrigger(MICO_SYS_LED);
-            continue;
-        }
-        //printf( "\r\n" );
-//        for (int i = 0; i < recvlen; i++)
-//        {
-//            //printf( "%02x ", inDataBuffer[i] );
-//            MicoUartSend(MICO_UART_2, &(inDataBuffer[i]), 1);
-//        }
-      MicoUartSend(MICO_UART_2, &(inDataBuffer[0]), recvlen);
-        MicoGpioOutputTrigger(MICO_SYS_LED);
-        //printf( "\r\n\r\n" );
-        //uart_cmd_process( inDataBuffer, recvlen );
-        //mico_rtos_set_semaphore( &postfog_sem );
-    }
-exit:
-    if (inDataBuffer)
-        free(inDataBuffer);
-    mico_rtos_delete_thread(NULL);
+    os_helloworld_log("join Wlan failed Err: %d", err);
 }
 
+static void micoNotify_WifiStatusHandler(WiFiEvent event, void *inContext)
+{
+    switch (event)
+    {
+    case NOTIFY_STATION_UP:
+        os_helloworld_log("Station up");
+        wifi_connect_count++;
+        break;
+    case NOTIFY_STATION_DOWN:
+        os_helloworld_log("Station down");
+        wifi_lost_count++;
+        break;
+    default:
+        break;
+    }
+}
 int application_start(void)
 {
-    mico_context = mico_system_context_init(0);
-    mico_uart_config_t uart_config;
-    /*UART receive thread*/
-    uart_config.baud_rate = 115200;
-    uart_config.data_width = DATA_WIDTH_8BIT;
-    uart_config.parity = NO_PARITY;
-    uart_config.stop_bits = STOP_BITS_1;
-    uart_config.flow_control = FLOW_CONTROL_DISABLED;
-    if (mico_context->micoSystemConfig.mcuPowerSaveEnable == true)
-        uart_config.flags = UART_WAKEUP_ENABLE;
-    else
-        uart_config.flags = UART_WAKEUP_DISABLE;
-    MicoGpioOutputTrigger(MICO_SYS_LED);
-    ring_buffer_init((ring_buffer_t *)&rx_buffer, (uint8_t *)rx_data, UART_BUFFER_LENGTH);
-    MicoUartInitialize(MICO_UART_2, &uart_config, (ring_buffer_t *)&rx_buffer);
-    mico_rtos_create_thread(NULL, MICO_APPLICATION_PRIORITY, "UART Recv", uart_recv_thread_DDE,
-                            STACK_SIZE_UART_RECV_THREAD, 0);
+    OSStatus err;
+    mico_rtc_time_t cur_time = {0};
+    char cur_time_print[20];
+    char start_time_print[20];
+    memset(cur_time_print, 0, 20);
+    memset(start_time_print, 0, 20);
+
+    /* Register user function when wlan connection status is changed */
+    err = mico_system_notify_register(mico_notify_WIFI_STATUS_CHANGED, (void *)micoNotify_WifiStatusHandler, NULL);
+    require_noerr(err, exit);
+
+    /* Register user function when wlan connection is faile in one attempt */
+    err = mico_system_notify_register(mico_notify_WIFI_CONNECT_FAILED, (void *)micoNotify_ConnectFailedHandler, NULL);
+    require_noerr(err, exit);
+
+    err = mico_system_init(mico_system_context_init(0));
+    require_noerr(err, exit);
 
     /* Output on debug serial port */
-    // os_helloworld_log("Hello world!");
+    os_helloworld_log("Hello world!");
+
+    cur_time.year = 17; //设置时间
+    cur_time.month = 9;
+    cur_time.date = 5;
+    cur_time.weekday = 4;
+    cur_time.hr = 17;
+    cur_time.min = 30;
+    cur_time.sec = 0;
+    sprintf(start_time_print, "20%02d-%02d-%02d %02d:%02d:%02d", cur_time.year, cur_time.month, cur_time.date, cur_time.hr, cur_time.min, cur_time.sec);
+
+    err = MicoRtcSetTime(&cur_time); //初始化 RTC 时钟的时间
+    require_noerr(err, exit);
 
     /* Trigger MiCO system led available on most MiCOKit */
-
+    while (1)
+    {
+        MicoGpioOutputTrigger(MICO_SYS_LED);
+        mico_thread_sleep(5);
+        MicoRtcGetTime(&cur_time); //返回新的时间值
+        sprintf(cur_time_print, "20%02d-%02d-%02d %02d:%02d:%02d", cur_time.year, cur_time.month, cur_time.date, cur_time.hr, cur_time.min, cur_time.sec);
+        os_helloworld_log("up_count = %d,dowm_count = %d %16s--%16s",
+                          wifi_connect_count, wifi_lost_count, start_time_print, cur_time_print);
+    }
+exit:
     mico_rtos_delete_thread(NULL);
     return kGeneralErr;
 }

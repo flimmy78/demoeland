@@ -102,7 +102,8 @@ static const struct cli_command ota_clis[] = {
 int application_start( void )
 {
     OSStatus err = kNoErr;
-
+    ota_log("sizeof(ota_url) = %d", sizeof(ota_url));
+    ota_log("sizeof(ota_md5) = %d", sizeof(ota_md5));
     mico_rtos_init_semaphore( &wait_sem, 1 );
 
     /*Register user function for MiCO nitification: WiFi status changed */
@@ -122,6 +123,7 @@ int application_start( void )
     cli_register_commands(ota_clis, sizeof(ota_clis)/sizeof(struct cli_command));
 
     exit:
+    ota_log( "oat main thread delete" );
     if ( wait_sem != NULL )
         mico_rtos_deinit_semaphore( &wait_sem );
     mico_rtos_delete_thread( NULL );

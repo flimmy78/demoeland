@@ -90,26 +90,10 @@
 				<useDefaultCommand>true</useDefaultCommand>
 				<runAllBuilders>true</runAllBuilders>
 			</target>
-			<target name="alilodemo@ALILO_G6_V0_3@moc" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>alilodemo@ALILO_G6_V0_3@moc</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
 			<target name="net.sntp_client@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
 				<buildCommand>mico</buildCommand>
 				<buildArguments>make</buildArguments>
 				<buildTarget>net.sntp_client@MK3080B@moc download run</buildTarget>
-				<stopOnError>true</stopOnError>
-				<useDefaultCommand>true</useDefaultCommand>
-				<runAllBuilders>true</runAllBuilders>
-			</target>
-			<target name="alilodemo@ALILO_G6_V0_3@moc total" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
-				<buildCommand>mico</buildCommand>
-				<buildArguments>make</buildArguments>
-				<buildTarget>alilodemo@ALILO_G6_V0_3@moc total</buildTarget>
 				<stopOnError>true</stopOnError>
 				<useDefaultCommand>true</useDefaultCommand>
 				<runAllBuilders>true</runAllBuilders>
@@ -198,6 +182,54 @@
 				<buildCommand>mico</buildCommand>
 				<buildArguments>make</buildArguments>
 				<buildTarget>net.ota@MK3080B@moc download run</buildTarget>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
+			<target name="filesystem.fatfs@MK3165 download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>mico</buildCommand>
+				<buildArguments>make</buildArguments>
+				<buildTarget>filesystem.fatfs@MK3165 download run</buildTarget>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
+			<target name="alilodemo@ALILO_G6_V0_3@moc" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>mico</buildCommand>
+				<buildArguments>make</buildArguments>
+				<buildTarget>alilodemo@ALILO_G6_V0_3@moc</buildTarget>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
+			<target name="alilodemo@Eland_V0_1@moc" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>mico</buildCommand>
+				<buildArguments>make</buildArguments>
+				<buildTarget>alilodemo@Eland_V0_1@moc</buildTarget>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
+			<target name="alilodemo@Eland_V0_1@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>mico</buildCommand>
+				<buildArguments>make</buildArguments>
+				<buildTarget>alilodemo@Eland_V0_1@moc download run</buildTarget>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
+			<target name="net.http.http_client_demo@Eland_V0_1@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>mico</buildCommand>
+				<buildArguments>make</buildArguments>
+				<buildTarget>net.http.http_client_demo@Eland_V0_1@moc download run</buildTarget>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
+			<target name="test.hal_rtc@MK3080B@moc download run" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>mico</buildCommand>
+				<buildArguments>make</buildArguments>
+				<buildTarget>test.hal_rtc@MK3080B@moc download run</buildTarget>
 				<stopOnError>true</stopOnError>
 				<useDefaultCommand>true</useDefaultCommand>
 				<runAllBuilders>true</runAllBuilders>
