@@ -468,6 +468,7 @@
         "platform_config.h": "c",
         "flash_kh25.h": "c",
         "eland_spi.h": "c",
-        "fog_v2_include.h": "c"
+        "fog_v2_include.h": "c",
+        "initializer_list": "c"
     }
 }
