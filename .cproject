@@ -234,6 +234,14 @@
 				<useDefaultCommand>true</useDefaultCommand>
 				<runAllBuilders>true</runAllBuilders>
 			</target>
+			<target name="net.http.http_client_demo@Eland_V0_1@moc" path="" targetID="org.eclipse.cdt.build.MakeTargetBuilder">
+				<buildCommand>mico</buildCommand>
+				<buildArguments>make</buildArguments>
+				<buildTarget>net.http.http_client_demo@Eland_V0_1@moc</buildTarget>
+				<stopOnError>true</stopOnError>
+				<useDefaultCommand>true</useDefaultCommand>
+				<runAllBuilders>true</runAllBuilders>
+			</target>
 		</buildTargets>
 	</storageModule>
 </cproject>

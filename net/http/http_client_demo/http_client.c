@@ -32,7 +32,6 @@
 #include "HTTPUtils.h"
 #include "SocketUtils.h"
 #include "StringUtils.h"
-
 #define http_client_log(M, ...) custom_log("HTTP", M, ##__VA_ARGS__)
 
 static OSStatus onReceivedData(struct _HTTPHeader_t *httpHeader,
@@ -108,11 +107,36 @@ sAu+tVdhlvMGCm59kpv6IC51maFB71tar34XfSOFAoGAWoMPyUkwvlstoj8jYW1i\n\
 xzBtqSA0mrUr91R/KUi+Fg2pfssocYurFzgee/206/UrnLJ2a1uOTezt9p5vFBr+\n\
 j1RnT/plaAAX6tMYz7zLsWY=\n\
 -----END PRIVATE KEY-----";
+char *capem =
+    "-----BEGIN CERTIFICATE-----\n\
+MIIEEDCCAvigAwIBAgIJAMuHDGTAVpizMA0GCSqGSIb3DQEBCwUAMIGTMQswCQYD\n\
+VQQGEwJKUDEOMAwGA1UECAwFVG9reW8xGjAYBgNVBAoMEUtJTkcgSklNIENPLixM\n\
+VEQuMRcwFQYDVQQLDA5SJkQgRGVwYXJ0bWVudDEZMBcGA1UEAwwQRUxBTkQgUHJp\n\
+dmF0ZSBDQTEkMCIGCSqGSIb3DQEJARYVd2VibWFzdGVyQGV4YW1wbGUuY29tMCAX\n\
+DTE3MDkwNjEwNDIyNVoYDzIxMTcwODEzMTA0MjI1WjCBkzELMAkGA1UEBhMCSlAx\n\
+DjAMBgNVBAgMBVRva3lvMRowGAYDVQQKDBFLSU5HIEpJTSBDTy4sTFRELjEXMBUG\n\
+A1UECwwOUiZEIERlcGFydG1lbnQxGTAXBgNVBAMMEEVMQU5EIFByaXZhdGUgQ0Ex\n\
+JDAiBgkqhkiG9w0BCQEWFXdlYm1hc3RlckBleGFtcGxlLmNvbTCCASIwDQYJKoZI\n\
+hvcNAQEBBQADggEPADCCAQoCggEBAKlA3QRVel3OEF7ZuNPQjkKfByOR1kTNp3bh\n\
+2nmq7vvBUPC4OeBZIAr9Jb9I801fi5IuHpcbjcCBrhBVo+m5QKAKEtLaRPzD1vHS\n\
+s3znxwQ/1q0Zkb9fFfuN7pYCi/DHkjMPuh5NGFoB4k1jzJNizA1pKw+eBMvrHhYD\n\
+a9b2bh9XjdZsoT5p8muGdm7XMKvb81YxOkp5Z8q16Ql1YWLUTEKoVyLMjvx7bI/j\n\
+JVB3Qb1zm+xBwxOTfCAmf4vHUtalM4Gk5NWU67REsmqxlLcpuIVWHh6IO3c9rH5E\n\
+UVHGUdlFAbNJ71KvikdzvXRs9g0OgRKw3C/y4Hkga66ybZ0Lb58CAwEAAaNjMGEw\n\
+HQYDVR0OBBYEFFnGPw7oVNEe0nHcEogRZGm1b7yqMB8GA1UdIwQYMBaAFFnGPw7o\n\
+VNEe0nHcEogRZGm1b7yqMAwGA1UdEwQFMAMBAf8wEQYJYIZIAYb4QgEBBAQDAgEG\n\
+MA0GCSqGSIb3DQEBCwUAA4IBAQAwkfmYqKC0Ky6Y3di8E3Fvqhm6MsvvXTSSlbIz\n\
+4NGGS864IFODqZCAPZmVGDskViRpx37J9YKq7Gnvji8hRUWSb6S7hqgr7kOEz1zE\n\
+82/xXw7RKDi0Vb96je9cPOMgThLbZ1diVyI3RTfY57xu+lEtgCrki9wkauCROacF\n\
+STUCuV0muX6umL05hwov5+1mjzAfMoonRSW+qltTFAzZPXuQfg4YkskTmSBsjqUo\n\
+SdE0WebPo0V0j6bBvtiPEt2q7SLlNk6oCvra2b8tRvZQZC6hIfkk1PtDBgavL87k\n\
+9r7mdVFee0dLXDjGfsxQ9tm59xTacuOKYE0Zrw5OUkNn7OrS\n\
+-----END CERTIFICATE-----";
 
-#define SIMPLE_GET_REQUEST                                     \
-    "GET /api/download.php?vid=taichi_16_024kbps HTTP/1.1\r\n" \
-    "Host: 160.16.237.210\r\n"                                 \
-    "\r\n"                                                     \
+#define SIMPLE_GET_REQUEST     \
+    "GET /api/download.php?vid=taichi_16_128kbps HTTP/1.1\r\n" \
+    "Host: 160.16.237.210\r\n" \
+    "\r\n"                     \
     ""
 
 static void micoNotify_WifiStatusHandler(WiFiEvent status, void *const inContext)
@@ -263,18 +287,12 @@ void simple_https_get(char *host, char *query)
 
     ssl_set_client_version(TLS_V1_2_MODE);
 
-    client_ssl = ssl_connect(client_fd, 0, NULL, &ssl_errno);
+    client_ssl = ssl_connect(client_fd, strlen(capem), capem, &ssl_errno);
     http_client_log("ssl_errno = %d client_fd = %d", ssl_errno, client_fd);
     require_string(client_ssl != NULL, exit, "ERROR: ssl disconnect");
 
-    // client_ssl = ssl_connect(client_fd, strlen(http_server_ssl_cert_str), http_server_ssl_cert_str, &ssl_errno);
-    // http_client_log("ssl_errno = %d client_fd = %d", ssl_errno, client_fd);
-    // require_string(client_ssl != NULL, exit, "ERROR: ssl disconnect");
+    http_client_log("#####https connect#####:num_of_chunks:%d, free:%d", MicoGetMemoryInfo()->num_of_chunks, MicoGetMemoryInfo()->free_memory);
 
-    // client_ssl = ssl_connect(client_fd, strlen(private_key), private_key, &ssl_errno);
-    // http_client_log("ssl_errno = %d client_fd = %d", ssl_errno, client_fd);
-    // require_string(client_ssl != NULL, exit, "ERROR: ssl disconnect");
-    /* Send HTTP Request */
     ssl_send(client_ssl, query, strlen(query));
 
     FD_ZERO(&readfds);
@@ -285,6 +303,8 @@ void simple_https_get(char *host, char *query)
     {
         /*parse header*/
         err = SocketReadHTTPSHeader(client_ssl, httpHeader);
+        http_client_log("httpHeader.Content-length:%ld", (uint32_t)httpHeader->contentLength);
+
         switch (err)
         {
         case kNoErr:
@@ -317,18 +337,21 @@ static OSStatus onReceivedData(struct _HTTPHeader_t *inHeader, uint32_t inPos, u
 {
     OSStatus err = kNoErr;
     http_context_t *context = inUserContext;
+    http_client_log("inPos = %ld,inLen = %d", inPos, inLen);
     if (inHeader->chunkedData == false)
     { //Extra data with a content length value
         if (inPos == 0 && context->content == NULL)
         {
-            context->content = calloc(inHeader->contentLength + 1, sizeof(uint8_t));
-            require_action(context->content, exit, err = kNoMemoryErr);
+            //context->content = calloc(inHeader->contentLength + 1, sizeof(uint8_t));
+            //require_action(context->content, exit, err = kNoMemoryErr);
             context->content_length = inHeader->contentLength;
+            http_client_log("content_length = %ld", inHeader->contentLength);
         }
-        memcpy(context->content + inPos, inData, inLen);
+        //memcpy(context->content + inPos, inData, inLen);
     }
     else
     { //extra data use a chunked data protocol
+        http_client_log("chunked data length value = %d", inHeader->contentLength);
         http_client_log("This is a chunked data, %d", inLen);
         if (inPos == 0)
         {
@@ -339,10 +362,10 @@ static OSStatus onReceivedData(struct _HTTPHeader_t *inHeader, uint32_t inPos, u
         else
         {
             context->content_length += inLen;
-            context->content = realloc(context->content, context->content_length + 1);
-            require_action(context->content, exit, err = kNoMemoryErr);
+            //context->content = realloc(context->content, context->content_length + 1);
+            //require_action(context->content, exit, err = kNoMemoryErr);
         }
-        memcpy(context->content + inPos, inData, inLen);
+        //memcpy(context->content + inPos, inData, inLen);
     }
 
 exit:
