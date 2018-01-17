@@ -469,6 +469,12 @@
         "flash_kh25.h": "c",
         "eland_spi.h": "c",
         "fog_v2_include.h": "c",
-        "initializer_list": "c"
+        "initializer_list": "c",
+        "system_internal.h": "c",
+        "eland_tcp.h": "c",
+        "stringutils.h": "c",
+        "cstddef": "c",
+        "eland_alarm.h": "c",
+        "exception": "c"
     }
 }
