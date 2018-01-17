@@ -48,7 +48,6 @@ int application_start( void )
   {
     memset(time, 0, sizeof(time));
     /*Gets time in miiliseconds since MiCO RTOS start*/
-    ext_oled_log("oled Start");
     sprintf(time, "%ld ms", mico_rtos_get_time());
     /*Starting position display time at the third row*/
     OLED_ShowString(0, 4, time);

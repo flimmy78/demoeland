@@ -46,103 +46,155 @@
 *  But the length of niPlain[] must be a multiple of 16 bytes.
 *********************************************************************************************/
 
-#include "mico.h" 
+#include "mico.h"
 
-#define aes_ecb_test_log(format, ...)  custom_log("Security", format, ##__VA_ARGS__)
+#define aes_ecb_test_log(format, ...) custom_log("Security", format, ##__VA_ARGS__)
 
-
-typedef struct testVector {
-    const char*  input;
-    const char*  output; 
+typedef struct testVector
+{
+    const char *input;
+    const char *output;
     size_t inLen;
     size_t outLen;
 } testVector;
 
-int  aes_ecb_test(void);
-
+int aes_ecb_test(void);
 
 int application_start(void)
 {
     int ret = 0;
- 
-    aes_ecb_test_log( "AES Test Start\r\n" );
-    
-    if ( (ret = aes_ecb_test()) != 0)        
-        aes_ecb_test_log("AES in ECB mode Test Failed!  The Error Code is %d",ret);
-    
+
+    aes_ecb_test_log("AES Test Start\r\n");
+
+    if ((ret = aes_ecb_test()) != 0)
+        aes_ecb_test_log("AES in ECB mode Test Failed!  The Error Code is %d", ret);
+
     else
         aes_ecb_test_log("AES in ECB mode Test Passed!");
-    
-    return 0;
 
+    return 0;
 }
-            
-            
-            
+
 /*********************  Definition of aes_test() ***************************/
 int aes_ecb_test(void)
 {
-  
+
     Aes enc;
     Aes dec;
-    
+
     const byte niPlain[] =
-        {   /* Must be 128 bits */
-            0x6b,0xc1,0xbe,0xe2,0x2e,0x40,0x9f,0x96,
-            0xe9,0x3d,0x7e,0x11,0x73,0x93,0x17,0x2a,
+        {
+            /* Must be 128 bits */
+            0x6b,
+            0xc1,
+            0xbe,
+            0xe2,
+            0x2e,
+            0x40,
+            0x9f,
+            0x96,
+            0xe9,
+            0x3d,
+            0x7e,
+            0x11,
+            0x73,
+            0x93,
+            0x17,
+            0x2a,
         };
 
-        const byte niCipher[] =
+    const byte niCipher[] =
         {
-            0xf3,0xee,0xd1,0xbd,0xb5,0xd2,0xa0,0x3c,
-            0x06,0x4b,0x5a,0x7e,0x3d,0xb1,0x81,0xf8,
+            0xf3,
+            0xee,
+            0xd1,
+            0xbd,
+            0xb5,
+            0xd2,
+            0xa0,
+            0x3c,
+            0x06,
+            0x4b,
+            0x5a,
+            0x7e,
+            0x3d,
+            0xb1,
+            0x81,
+            0xf8,
         };
 
-        const byte niKey[] =
-        {   /* Must be 256 bits */
-            0x60,0x3d,0xeb,0x10,0x15,0xca,0x71,0xbe,
-            0x2b,0x73,0xae,0xf0,0x85,0x7d,0x77,0x81,
-            0x1f,0x35,0x2c,0x07,0x3b,0x61,0x08,0xd7,
-            0x2d,0x98,0x10,0xa3,0x09,0x14,0xdf,0xf4,
+    const byte niKey[] =
+        {
+            /* Must be 256 bits */
+            0x60,
+            0x3d,
+            0xeb,
+            0x10,
+            0x15,
+            0xca,
+            0x71,
+            0xbe,
+            0x2b,
+            0x73,
+            0xae,
+            0xf0,
+            0x85,
+            0x7d,
+            0x77,
+            0x81,
+            0x1f,
+            0x35,
+            0x2c,
+            0x07,
+            0x3b,
+            0x61,
+            0x08,
+            0xd7,
+            0x2d,
+            0x98,
+            0x10,
+            0xa3,
+            0x09,
+            0x14,
+            0xdf,
+            0xf4,
         };
-        
-        byte cipher[AES_BLOCK_SIZE * 8];
-        byte plain [AES_BLOCK_SIZE * 8];
 
-        memset(cipher, 0, AES_BLOCK_SIZE);
-        AesSetKey(&enc, niKey, sizeof(niKey), cipher, AES_ENCRYPTION);
-        AesEncryptDirect(&enc, cipher, niPlain);
-        
-        /* Printf cipher text */
-        printf("The Cipher Text is: "); 
-        for(int i=0;i<sizeof(niCipher);i++)
-                             
-        {
-            printf("-%x",cipher[i]);    /* Print Cipher Text after encryption */
-        }
-        printf("\r\n");
-        printf("\r\n");  
-        
-        if (memcmp(cipher, niCipher, AES_BLOCK_SIZE) != 0)
-            return -1;
+    byte cipher[AES_BLOCK_SIZE * 8];
+    byte plain[AES_BLOCK_SIZE * 8];
 
-        memset(plain, 0, AES_BLOCK_SIZE);
-        AesSetKey(&dec, niKey, sizeof(niKey), plain, AES_DECRYPTION);
-        AesDecryptDirect(&dec, plain, niCipher);
-        
-        /* Print plain text */
-        printf("The Plain Text is: "); 
-        for(int i=0;i<sizeof(niPlain);i++)
-        {
-            printf("-%x",plain[i]);    /* Print Plain Text after decryption */
-        }
-        printf("\r\n");
-        printf("\r\n");
-    
-        if (memcmp(plain, niPlain, AES_BLOCK_SIZE) != 0)
-            return 1;
- 
+    memset(cipher, 0, AES_BLOCK_SIZE);
+    AesSetKey(&enc, niKey, sizeof(niKey), cipher, AES_ENCRYPTION);
+    AesEncryptDirect(&enc, cipher, niPlain);
+
+    /* Printf cipher text */
+    printf("The Cipher Text is: ");
+    for (int i = 0; i < sizeof(niCipher); i++)
+
+    {
+        printf("-%x", cipher[i]); /* Print Cipher Text after encryption */
+    }
+    printf("\r\n");
+    printf("\r\n");
+
+    if (memcmp(cipher, niCipher, AES_BLOCK_SIZE) != 0)
+        return -1;
+
+    memset(plain, 0, AES_BLOCK_SIZE);
+    AesSetKey(&dec, niKey, sizeof(niKey), plain, AES_DECRYPTION);
+    AesDecryptDirect(&dec, plain, niCipher);
+
+    /* Print plain text */
+    printf("The Plain Text is: ");
+    for (int i = 0; i < sizeof(niPlain); i++)
+    {
+        printf("-%x", plain[i]); /* Print Plain Text after decryption */
+    }
+    printf("\r\n");
+    printf("\r\n");
+
+    if (memcmp(plain, niPlain, AES_BLOCK_SIZE) != 0)
+        return 1;
+
     return 0;
 }
-
-

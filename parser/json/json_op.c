@@ -35,31 +35,32 @@
 #include "micokit_ext.h"
 #define os_json_log(M, ...) custom_log("JSON", M, ##__VA_ARGS__)
 
-void test_jsonc()
-{
-    /*control info*/
-    bool rgb_sw = false;
-    int rgb_hue = 0;
-    int rgb_sat = 0;
-    int rgb_bri = 0;
-    char *strbuff;
-    /*1:construct json object*/
-    struct json_object *recv_json_object = NULL;
-    recv_json_object = json_object_new_object();
+  
+void test_jsonc()  
+{  
+  /*control info*/
+  bool rgb_sw = false;
+  int  rgb_hue = 0;
+  int  rgb_sat = 0;
+  int  rgb_bri = 0;
+  
+  /*1:construct json object*/
+  struct json_object *recv_json_object=NULL;
+  recv_json_object=json_object_new_object();
 
-    struct json_object *device_object = NULL;
-    device_object = json_object_new_object();
-    json_object_object_add(device_object, "Hardware", json_object_new_string("MiCOKit3288"));
-    json_object_object_add(device_object, "RGBSwitch", json_object_new_boolean(false));
-    json_object_object_add(device_object, "RGBHues", json_object_new_int(0));
-    json_object_object_add(device_object, "RGBSaturation", json_object_new_int(100));
-    json_object_object_add(device_object, "RGBBrightness", json_object_new_int(100));
-
-    json_object_object_add(recv_json_object, "device_info", device_object); /*one pair K-V*/
-    os_json_log("%s", json_object_to_json_string(recv_json_object));
-
-    /*recv_json_object*/
-    /*
+  struct json_object *device_object=NULL;
+  device_object=json_object_new_object();
+  json_object_object_add(device_object, "Hardware", json_object_new_string("MiCOKit3288"));   
+  json_object_object_add(device_object, "RGBSwitch", json_object_new_boolean(false)); 
+  json_object_object_add(device_object, "RGBHues", json_object_new_int(0)); 
+  json_object_object_add(device_object, "RGBSaturation", json_object_new_int(100));  
+  json_object_object_add(device_object, "RGBBrightness", json_object_new_int(100)); 
+  
+  json_object_object_add(recv_json_object,"device_info",device_object);/*one pair K-V*/
+  os_json_log("%s",json_object_to_json_string(recv_json_object));
+  
+  /*recv_json_object*/
+  /*
   {"device_info": 
       {  "Hardware": "MiCOKit3288", 
          "RGBSwitch": false, 
@@ -69,53 +70,41 @@ void test_jsonc()
       } 
   }
   */
-
-    /*2:parse json object*/
-    json_object *parse_json_object = json_object_object_get(recv_json_object, "device_info");
-    /*get data one by one*/
-    json_object_object_foreach(parse_json_object, key, val)
-    {
-        if (!strcmp(key, "RGBSwitch"))
-        {
+  
+  /*2:parse json object*/
+  json_object* parse_json_object=json_object_object_get(recv_json_object,"device_info");
+  /*get data one by one*/
+  json_object_object_foreach(parse_json_object, key, val) {
+          if(!strcmp(key, "RGBSwitch")){
             rgb_sw = json_object_get_boolean(val);
-            os_json_log("rgb_sw=%d", rgb_sw);
-        }
-        else if (!strcmp(key, "RGBHues"))
-        {
+            os_json_log("rgb_sw=%d",rgb_sw);
+          }
+          else if(!strcmp(key, "RGBHues")){
             rgb_hue = json_object_get_int(val);
-            os_json_log("rgb_hue=%d", rgb_hue);
-        }
-        else if (!strcmp(key, "RGBSaturation"))
-        {
+            os_json_log("rgb_hue=%d",rgb_hue);
+          }
+          else if(!strcmp(key, "RGBSaturation")){
             rgb_sat = json_object_get_int(val);
-            os_json_log("rgb_sat=%d", rgb_sat);
-        }
-        else if (!strcmp(key, "RGBBrightness"))
-        {
+            os_json_log("rgb_sat=%d",rgb_sat);
+          }
+          else if(!strcmp(key, "RGBBrightness")){
             rgb_bri = json_object_get_int(val);
-            os_json_log("rgb_bri=%d", rgb_bri);
+            os_json_log("rgb_bri=%d",rgb_bri);
+          }
         }
-        else if (!strcmp(key, "Hardware"))
-        {
-            strbuff = malloc(sizeof("MiCOKit3288") + 1);
-            memset(strbuff, 0, sizeof("MiCOKit3288") + 1);
-            sprintf(strbuff, "%s", json_object_get_string(val));
-            os_json_log("%s", strbuff);
-            free(strbuff);
-        }
-    }
     /*3:parse finished,free memory*/
-    json_object_put(recv_json_object); /*free memory*/
-    recv_json_object = NULL;
-
+    json_object_put(recv_json_object);/*free memory*/   
+    recv_json_object=NULL;
+    
     /*4:operate rgb*/
-    os_json_log("control rgb led now");
-    rgb_led_init();
-    hsb2rgb_led_open(rgb_hue, rgb_sat, rgb_bri); /*turn red*/
-}
-
-int application_start(void)
-{
-    test_jsonc();
-    return 0;
-}
+   os_json_log("control rgb led now");
+   rgb_led_init();
+   hsb2rgb_led_open(rgb_hue, rgb_sat, rgb_bri);/*turn red*/
+}  
+  
+  
+int application_start( void )
+{  
+    test_jsonc();  
+    return 0;  
+}  

@@ -33,26 +33,9 @@
 #include "mico.h"
 #include "sntp.h"
 
-#define TIME_SYNC_PERIOD    (1 * SECONDS)
+#define TIME_SYNC_PERIOD    (60 * SECONDS)
 
 #define sntp_demo_log(M, ...) custom_log("SNTP DEMO", M, ##__VA_ARGS__)
-
-static mico_semaphore_t wifi_sem;
-void appNotify_WifiStatusHandler(WiFiEvent status, void *const inContext)
-{
-    switch (status)
-    {
-    case NOTIFY_STATION_UP:
-        sntp_demo_log("Wi-Fi connected.");
-        mico_rtos_set_semaphore(&wifi_sem);
-        break;
-    case NOTIFY_STATION_DOWN:
-        sntp_demo_log("Wi-Fi disconnected.");
-        break;
-    default:
-        break;
-    }
-}
 
 /**/
 static void read_utc_time_from_rtc( struct tm *utc_time )
@@ -108,13 +91,7 @@ int application_start( void )
     OSStatus           err = kNoErr;
     struct tm          utc_time;
     mico_utc_time_ms_t utc_time_ms;
-
-    err = mico_rtos_init_semaphore(&wifi_sem, 1);
-    require_noerr(err, exit);
-
-    /* Register user function for MiCO notification: WiFi status changed */
-    err = mico_system_notify_register(mico_notify_WIFI_STATUS_CHANGED, (void *)appNotify_WifiStatusHandler, NULL);
-    require_noerr(err, exit);
+    iso8601_time_t     iso8601_time;
 
     /* Read UTC time from RTC hardware */
     read_utc_time_from_rtc( &utc_time );
@@ -127,22 +104,18 @@ int application_start( void )
     err = mico_system_init( mico_system_context_init( 0 ) );
     require_noerr( err, exit );
 
-    /* wait for wifi on */
-    mico_rtos_get_semaphore(&wifi_sem, MICO_WAIT_FOREVER);
-
     /* Start auto sync with NTP server */
     sntp_start_auto_time_sync( TIME_SYNC_PERIOD, sntp_time_synced );
 
     /* Print current time from MiCO system every 10 seconds */
-//    while ( 1 )
-//    {
-//        mico_time_get_iso8601_time( &iso8601_time );
-//        sntp_demo_log("Current time: %.26s", (char*)&iso8601_time);
-//        mico_rtos_delay_milliseconds( 10 * 1000 );
-//    }
+    while ( 1 )
+    {
+        mico_time_get_iso8601_time( &iso8601_time );
+        sntp_demo_log("Current time: %.26s", (char*)&iso8601_time);
+        mico_rtos_delay_milliseconds( 10 * 1000 );
+    }
 
     exit:
-    sntp_demo_log("mico_rtos_delete_thread");
     mico_rtos_delete_thread( NULL );
     return 0;
 }

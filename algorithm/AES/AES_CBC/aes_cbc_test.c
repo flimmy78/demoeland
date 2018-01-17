@@ -48,35 +48,33 @@
  *******************************************************************************************
  **/
 
-#include "mico.h" 
+#include "mico.h"
 
-#define aes_test_log(format, ...)  custom_log("Security", format, ##__VA_ARGS__)
+#define aes_test_log(format, ...) custom_log("Security", format, ##__VA_ARGS__)
 
-
-typedef struct testVector {
-    const char*  input;
-    const char*  output; 
+typedef struct testVector
+{
+    const char *input;
+    const char *output;
     size_t inLen;
     size_t outLen;
 } testVector;
 
-int  aes_test(void);
-
+int aes_test(void);
 
 int application_start(void)
 {
     int ret = 0;
- 
-    aes_test_log( "AES in CBC mode Test Start\r\n" );
-    
-    if ( (ret = aes_test()) != 0)        
-        aes_test_log("AES in CBC mode Test Failed!  The Error Code is %d",ret);
-    
+
+    aes_test_log("AES in CBC mode Test Start\r\n");
+
+    if ((ret = aes_test()) != 0)
+        aes_test_log("AES in CBC mode Test Failed!  The Error Code is %d", ret);
+
     else
         aes_test_log("AES in CBC mode Test Passed!");
-    
-    return 0;
 
+    return 0;
 }
 /*********************  Defination of aes_test() ***************************/
 int aes_test(void)
@@ -84,64 +82,88 @@ int aes_test(void)
     Aes enc;
     Aes dec;
 
-    
     /* Defination of input string to be used AES Enryption */
-    
-    const byte msg[] = { /*length must be a multiple of 128 bits ��16 bytes��*/
-        0x6e,0x6f,0x77,0x20,0x69,0x73,0x20,0x74,
-        0x68,0x65,0x20,0x74,0x69,0x6d,0x65,0x20,
-   };
 
-    const byte verify[] = 
-    {
-        0x95,0x94,0x92,0x57,0x5f,0x42,0x81,0x53,
-        0x2c,0xcc,0x9d,0x46,0x77,0xa2,0x33,0xcb,
+    const byte msg[] = {
+        /*length must be a multiple of 128 bits ��16 bytes��*/
+        0x6e,
+        0x6f,
+        0x77,
+        0x20,
+        0x69,
+        0x73,
+        0x20,
+        0x74,
+        0x68,
+        0x65,
+        0x20,
+        0x74,
+        0x69,
+        0x6d,
+        0x65,
+        0x20,
     };
- 
-    byte key[] = "0123456789abcdef";  /* align  Must be 128 bits */
-    byte iv[]  = "1234567890abcdef";  /* align  Must be 128 bits */
-    
+
+    const byte verify[] =
+        {
+            0x95,
+            0x94,
+            0x92,
+            0x57,
+            0x5f,
+            0x42,
+            0x81,
+            0x53,
+            0x2c,
+            0xcc,
+            0x9d,
+            0x46,
+            0x77,
+            0xa2,
+            0x33,
+            0xcb,
+        };
+
+    byte key[] = "0123456789abcdef"; /* align  Must be 128 bits */
+    byte iv[] = "1234567890abcdef";  /* align  Must be 128 bits */
+
     byte cipher[AES_BLOCK_SIZE * 8];
-    byte plain [AES_BLOCK_SIZE * 8];
-    
-   
+    byte plain[AES_BLOCK_SIZE * 8];
+
     AesSetKey(&enc, key, AES_BLOCK_SIZE, iv, AES_ENCRYPTION);
     AesSetKey(&dec, key, AES_BLOCK_SIZE, iv, AES_DECRYPTION);
-    
+
     /* Encryption process */
     AesCbcEncrypt(&enc, cipher, msg, sizeof(msg));
-    
+
     /* Printf cipher text */
-    printf("The Cipher Text is: "); 
-    for(int i=0;i<sizeof(msg);i++)
+    printf("The Cipher Text is: ");
+    for (int i = 0; i < sizeof(msg); i++)
     {
-        printf("-%x",cipher[i]);    /* Print Cipher Text after encryption */
+        printf("-%x", cipher[i]); /* Print Cipher Text after encryption */
     }
     printf("\r\n");
     printf("\r\n");
 
     /* Decryption process */
     AesCbcDecrypt(&dec, plain, cipher, sizeof(cipher));
-    
+
     /* Print plain text */
-    printf("The Plain Text is: "); 
-    for(int i=0;i<sizeof(msg);i++)
+    printf("The Plain Text is: ");
+    for (int i = 0; i < sizeof(msg); i++)
     {
-        printf("-%x",plain[i]);    /* Print Plain Text after decryption */
+        printf("-%x", plain[i]); /* Print Plain Text after decryption */
     }
     printf("\r\n");
     printf("\r\n");
-    
-    /* Compare cipher text, generated from encryption, with verify[] predefined */    
+
+    /* Compare cipher text, generated from encryption, with verify[] predefined */
     if (memcmp(cipher, verify, sizeof(msg)))
         return -1;
-    
-    
+
     /* Compare plain text generated from decryption, with msg[] defined */
     if (memcmp(plain, msg, sizeof(msg)))
         return 1;
- 
+
     return 0;
 }
-
-

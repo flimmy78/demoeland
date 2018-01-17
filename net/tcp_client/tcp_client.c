@@ -34,7 +34,7 @@
 
 #define tcp_client_log(M, ...) custom_log("TCP", M, ##__VA_ARGS__)
 
-static char tcp_remote_ip[16] = "192.168.1.103"; /*remote ip address*/
+static char tcp_remote_ip[16] = "192.168.3.53"; /*remote ip address*/
 static int tcp_remote_port = 6000; /*remote port*/
 static mico_semaphore_t wait_sem = NULL;
 
@@ -46,12 +46,8 @@ static void micoNotify_WifiStatusHandler( WiFiEvent status, void* const inContex
             mico_rtos_set_semaphore( &wait_sem );
             break;
         case NOTIFY_STATION_DOWN:
-
-            break;
         case NOTIFY_AP_UP:
-            break;
         case NOTIFY_AP_DOWN:
-
             break;
     }
 }

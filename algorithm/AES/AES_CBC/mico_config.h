@@ -31,16 +31,16 @@
 */
 #pragma once
 
-#define APP_INFO   "MiCO BASIC Demo"
+#define APP_INFO "MiCO BASIC Demo"
 
-#define FIRMWARE_REVISION   "MICO_BASIC_1_0"
-#define MANUFACTURER        "MXCHIP Inc."
-#define SERIAL_NUMBER       "20140606"
-#define PROTOCOL            "com.mxchip.basic"
+#define FIRMWARE_REVISION "MICO_BASIC_1_0"
+#define MANUFACTURER "MXCHIP Inc."
+#define SERIAL_NUMBER "20140606"
+#define PROTOCOL "com.mxchip.basic"
 
 /************************************************************************
  * Application thread stack size */
-#define MICO_DEFAULT_APPLICATION_STACK_SIZE         (1500)
+#define MICO_DEFAULT_APPLICATION_STACK_SIZE (1500)
 
 /************************************************************************
  * Enable wlan connection, start easylink configuration if no wlan settings are existed */
@@ -48,18 +48,18 @@
 
 #define MICO_WLAN_CONFIG_MODE CONFIG_MODE_EASYLINK_WITH_SOFTAP
 
-#define EasyLink_TimeOut                60000 /**< EasyLink timeout 60 seconds. */
+#define EasyLink_TimeOut 60000 /**< EasyLink timeout 60 seconds. */
 
-#define EasyLink_ConnectWlan_Timeout    20000 /**< Connect to wlan after configured by easylink.
-                                                   Restart easylink after timeout: 20 seconds. */
+#define EasyLink_ConnectWlan_Timeout 20000 /**< Connect to wlan after configured by easylink. \
+                                                Restart easylink after timeout: 20 seconds. */
 
 /************************************************************************
  * Device enter MFG mode if MICO settings are erased. */
-//#define MFG_MODE_AUTO 
+//#define MFG_MODE_AUTO
 
 /************************************************************************
  * Command line interface */
-#define MICO_CLI_ENABLE  
+#define MICO_CLI_ENABLE
 
 /************************************************************************
  * Start a system monitor daemon, application can register some monitor  
@@ -69,6 +69,5 @@
 
 /************************************************************************
  * MiCO TCP server used for configuration and ota. */
-//#define MICO_CONFIG_SERVER_ENABLE 
-#define MICO_CONFIG_SERVER_PORT    8000
-
+//#define MICO_CONFIG_SERVER_ENABLE
+#define MICO_CONFIG_SERVER_PORT 8000

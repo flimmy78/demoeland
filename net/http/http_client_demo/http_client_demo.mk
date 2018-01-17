@@ -25,6 +25,3 @@
 NAME := App_http_client
 
 $(NAME)_SOURCES := http_client.c
-
-
-#$(NAME)_COMPONENTS := security

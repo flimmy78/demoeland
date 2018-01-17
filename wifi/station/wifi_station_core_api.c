@@ -69,9 +69,9 @@ int application_start( void )
   
   /* Initialize wlan parameters */
   memset( &wNetConfigAdv, 0x0, sizeof(wNetConfigAdv) );
-  strcpy((char*)wNetConfigAdv.ap_info.ssid, "TP-LINK_4850");   /* wlan ssid string */
-  strcpy((char*)wNetConfigAdv.key, "cq68794850");                /* wlan key string or hex data in WEP mode */
-  wNetConfigAdv.key_len = strlen("cq68794850");                  /* wlan key length */
+  strcpy((char*)wNetConfigAdv.ap_info.ssid, "Xiaomi.Router");   /* wlan ssid string */
+  strcpy((char*)wNetConfigAdv.key, "stm32f215");                /* wlan key string or hex data in WEP mode */
+  wNetConfigAdv.key_len = strlen("stm32f215");                  /* wlan key length */
   wNetConfigAdv.ap_info.security = SECURITY_TYPE_AUTO;          /* wlan security mode */
   wNetConfigAdv.ap_info.channel = 0;                            /* Select channel automatically */
   wNetConfigAdv.dhcpMode = DHCP_Client;                         /* Fetch Ip address from DHCP server */

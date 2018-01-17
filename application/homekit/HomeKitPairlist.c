@@ -19,7 +19,7 @@
 #include "mico_app_define.h"
 #include "HomeKit.h"
 #include "HomeKitPairList.h"
-//#define Homekit_log(M, ...) custom_log("APP", M, ##__VA_ARGS__)
+
 extern app_context_t* app_context;
 
 uint32_t HKPairInfoCount(void)
@@ -32,7 +32,7 @@ uint32_t HKPairInfoCount(void)
     if(pairList->pairInfo[i].controllerName[0] != 0x0)
       count++;
   }
-  //Homekit_log("Current paired %d\r\n", count);
+  printf("Current paired %d\r\n", count);
   return count;
 }
 
